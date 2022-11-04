@@ -64,7 +64,7 @@ float_pair get_rnn_vid_data(network net, char **files, int n, int batch, int ste
     float_pair p = {0};
     p.x = feats;
     p.y = feats + output_size*batch; //+ out_im.w*out_im.h*out_im.c;
-
+    free(feats);
     return p;
 }
 

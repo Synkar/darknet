@@ -1152,7 +1152,8 @@ void threat_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_i
         float curr = 1000000.f/((long int)tval_result.tv_usec);
         fps = .9*fps + .1*curr;
     }
-#endif
+    free(indexes);
+    #endif
 }
 
 
@@ -1238,6 +1239,7 @@ void gun_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_inde
         float curr = 1000000.f/((long int)tval_result.tv_usec);
         fps = .9*fps + .1*curr;
     }
+free(indexes);
 #endif
 }
 
@@ -1347,6 +1349,7 @@ void demo_classifier(char *datacfg, char *cfgfile, char *weightfile, int cam_ind
             start_time = get_time_point();
         }
     }
+free(indexes);
 #endif
 }
 

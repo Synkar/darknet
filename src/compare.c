@@ -252,6 +252,7 @@ void SortMaster3000(char *filename, char *weightfile)
     for(i = 0; i < N; ++i){
         printf("%s\n", boxes[i].filename);
     }
+    free(boxes);
     printf("Sorted in %d compares, %f secs\n", total_compares, sec(clock()-time));
 }
 
@@ -327,6 +328,7 @@ void BattleRoyaleWithCheese(char *filename, char *weightfile)
         }
         fclose(outfp);
     }
+    free(boxes);
     printf("Tournament in %d compares, %f secs\n", total_compares, sec(clock()-time));
 }
 

@@ -472,6 +472,8 @@ void forward_region_layer_gpu(const region_layer l, network_state state)
     cuda_push_array(l.delta_gpu, l.delta, l.batch*l.outputs);
     //cudaStreamSynchronize(get_cuda_stream());
     if(cpu_state.truth) free(cpu_state.truth);
+    free(in_cpu);
+    free(truth_cpu);
 }
 
 void backward_region_layer_gpu(region_layer l, network_state state)

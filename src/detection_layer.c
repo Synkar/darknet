@@ -275,6 +275,8 @@ void forward_detection_layer_gpu(const detection_layer l, network_state state)
     cuda_push_array(l.output_gpu, l.output, l.batch*l.outputs);
     cuda_push_array(l.delta_gpu, l.delta, l.batch*l.inputs);
     free(cpu_state.input);
+    free(in_cpu);
+    if(truth_cpu) free(truth_cpu);
     if(cpu_state.truth) free(cpu_state.truth);
 }
 

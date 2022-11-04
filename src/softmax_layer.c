@@ -613,6 +613,7 @@ void forward_contrastive_layer_gpu(contrastive_layer l, network_state state)
 
     free(in_cpu);
     if (cpu_state.truth) free(cpu_state.truth);
+    if (truth_cpu) free(truth_cpu);
 }
 
 void backward_contrastive_layer_gpu(contrastive_layer layer, network_state state)

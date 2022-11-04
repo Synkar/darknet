@@ -328,5 +328,6 @@ model do_kmeans(matrix data, int k)
     model m;
     m.assignments = assignments;
     m.centers = centers;
+    free(assignments);
     return m;
 }

@@ -431,6 +431,7 @@ void valid_go(char *cfgfile, char *weightfile, int multi)
     }
     free(board);
     free(move);
+    free(base);
 }
 
 void engine_go(char *filename, char *weightfile, int multi)
@@ -604,6 +605,9 @@ void engine_go(char *filename, char *weightfile, int multi)
         fflush(stdout);
         fflush(stderr);
     }
+    free(board);
+    free(one);
+    free(two);
 }
 
 void test_go(char *cfg, char *weights, int multi)
@@ -701,6 +705,8 @@ void test_go(char *cfg, char *weights, int multi)
         flip_board(board);
         color = -color;
     }
+    free(board);
+    free(move);
 }
 
 float score_game(float *board)

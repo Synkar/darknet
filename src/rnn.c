@@ -215,6 +215,8 @@ void train_char_rnn(char *cfgfile, char *weightfile, char *filename, int clear, 
     char buff[256];
     sprintf(buff, "%s/%s_final.weights", backup_directory, base);
     save_weights(net, buff);
+    free(offsets);
+    free(text);
 }
 
 void print_symbol(int n, char **tokens){
@@ -282,6 +284,7 @@ void test_char_rnn(char *cfgfile, char *weightfile, int num, char *seed, float t
         //c = top_max_index(out, inputs, 2);
         print_symbol(c, tokens);
     }
+    free(input);
     printf("\n");
 }
 
@@ -327,6 +330,7 @@ void test_tactic_rnn(char *cfgfile, char *weightfile, int num, float temp, int r
         out = network_predict(net, input);
         input[c] = 0;
     }
+    free(input);
     printf("\n");
 }
 
@@ -380,6 +384,7 @@ void valid_tactic_rnn(char *cfgfile, char *weightfile, char *seed)
         c = next;
         printf("%d %d Perplexity: %4.4f    Word Perplexity: %4.4f\n", count, words, pow(2, -sum/count), pow(2, -sum/words));
     }
+    free(input);
 }
 
 void valid_char_rnn(char *cfgfile, char *weightfile, char *seed)
@@ -421,6 +426,7 @@ void valid_char_rnn(char *cfgfile, char *weightfile, char *seed)
         c = next;
         printf("%d Perplexity: %4.4f    Word Perplexity: %4.4f\n", count, pow(2, -sum/count), pow(2, -sum/words));
     }
+    free(input);
 }
 
 void vec_char_rnn(char *cfgfile, char *weightfile, char *seed)
@@ -470,6 +476,7 @@ void vec_char_rnn(char *cfgfile, char *weightfile, char *seed)
         }
         printf("\n");
     }
+    free(input);
 }
 
 void run_char_rnn(int argc, char **argv)

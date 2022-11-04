@@ -997,7 +997,10 @@ layer parse_shortcut(list *options, size_params params, network net)
             fprintf(stderr, " (%4d x%4d x%4d) + (%4d x%4d x%4d) \n",
                 params.w, params.h, params.c, net.layers[index].out_w, net.layers[index].out_h, params.net.layers[index].out_c);
     }
-
+    // free(layers);
+    // free(sizes);
+    // free(layers_delta);
+    // free(layers_output);
     return s;
 }
 
@@ -1139,7 +1142,7 @@ route_layer parse_route(list *options, size_params params)
     if (layer.groups > 1) fprintf(stderr, "%d/%d", layer.group_id, layer.groups);
     else fprintf(stderr, "   ");
     fprintf(stderr, " -> %4d x%4d x%4d \n", layer.out_w, layer.out_h, layer.out_c);
-
+    // free(sizes);
     return layer;
 }
 
@@ -1301,6 +1304,9 @@ void parse_net_options(list *options, network *net)
             net->steps = steps;
             net->seq_scales = seq_scales;
             net->num_steps = n;
+            free(steps);
+            free(scales);
+            free(seq_scales);
         }
     } else if (net->policy == EXP){
         net->gamma = option_find_float(options, "gamma", 1);

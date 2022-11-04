@@ -73,6 +73,7 @@ void kmeans_maximization(matrix data, int *assignments, matrix centers)
             }
         }
     }
+    free(counts);
 }
 
 double WCSS(matrix data, int *assignments, matrix centers)
@@ -138,6 +139,7 @@ model do_kmeans(matrix data, int k)
     model m;
     m.assignments = assignments;
     m.centers = centers;
+    free(assignments);
     return m;
 }
 
@@ -178,6 +180,8 @@ int main(int argc, char *argv[])
             if(count) printf("%d, ", counts[j]);
             printf("%f, %f\n", m.centers.vals[j][0], m.centers.vals[j][1]);
         }
+        free(counts);
+
     }else if(strcmp(argv[2], "scan")==0){
         for(i = 1; i <= k; ++i){
             model m = do_kmeans(data, i);

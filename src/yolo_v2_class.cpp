@@ -171,7 +171,8 @@ LIB_API Detector::Detector(std::string cfg_filename, std::string weight_filename
 
     detector_gpu.track_id = (unsigned int *)calloc(l.classes, sizeof(unsigned int));
     for (j = 0; j < l.classes; ++j) detector_gpu.track_id[j] = 1;
-
+    free(detector_gpu.avg);
+    free(detector_gpu.track_id);
 #ifdef GPU
     check_cuda( cudaSetDevice(old_gpu_index) );
 #endif

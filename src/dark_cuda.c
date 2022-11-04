@@ -409,6 +409,7 @@ void pre_allocate_pinned_memory(const size_t size)
         pinned_num_of_blocks = num_of_blocks;
     }
     pthread_mutex_unlock(&mutex_pinned);
+
 }
 
 // simple - get pre-allocated pinned memory

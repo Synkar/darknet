@@ -231,6 +231,11 @@ void validate_coco(char *cfgfile, char *weightfile)
     if (buf) free(buf);
     if (buf_resized) free(buf_resized);
     if (thr) free(thr);
+    free(boxes);
+    for(j = 0; j < side*side*l.n; ++j) {
+        free(probs[j]);
+    }
+    free(probs);
 
     fprintf(stderr, "Total Detection Time: %f Seconds\n", (double)(time(0) - start));
 }
@@ -384,6 +389,7 @@ void test_coco(char *cfgfile, char *weightfile, char *filename, float thresh)
         free(probs[j]);
     }
     free(probs);
+    free(alphabet);
 }
 
 void run_coco(int argc, char **argv)
